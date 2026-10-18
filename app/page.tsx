@@ -1,4 +1,5 @@
 import LeadForm from "./LeadForm";
+import Image from "next/image";
 
 const products = [
     {
@@ -71,8 +72,7 @@ export default function Home() {
                 </div>
 
                 <div className="animate-fade-up-slow border-t border-current pt-6">
-                    <img src="/hero.jpg" alt="Свежеобжаренные кофейные зёрна" className="mb-6 aspect-[4/3] w-full object-cover" />
-                    <p className="eyebrow text-sm uppercase tracking-[0.15em]">
+                    <Image src="/hero.jpg" alt="Свежеобжаренные кофейные зёрна" width={1600} height={1200} priority className="mb-6 aspect-[4/3] w-full object-cover" />                    <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                         Ритм нашей мастерской
                     </p>
 
@@ -256,8 +256,7 @@ export default function Home() {
                             Платить на сайте не нужно.
                         </p>
 
-                        <img src="/request.jpg" alt="Кофейные зёрна и упаковка для заказа" className="mt-8 aspect-[4/3] w-full max-w-sm object-cover" />
-                    </div>
+                        <Image src="/request.jpg" alt="Кофейные зёрна и упаковка для заказа" width={1200} height={900} className="mt-8 aspect-[4/3] w-full max-w-sm object-cover" />                    </div>
 
                     <LeadForm />
                 </div>
