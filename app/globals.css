@@ -44,3 +44,4 @@ input:-webkit-autofill:focus {
 .animate-fade-up-slow { animation: fade-up 1.1s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) { .animate-fade-up, .animate-fade-up-slow { animation: none; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
