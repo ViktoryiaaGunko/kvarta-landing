@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function LeadForm() {
     const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
+    const [phoneError, setPhoneError] = useState("");
 
     const fieldClassName =
         "mt-2 min-h-12 w-full rounded-none border-0 border-b border-current bg-transparent px-0 py-3 " +
@@ -25,6 +26,7 @@ export default function LeadForm() {
         const utm = new URLSearchParams(window.location.search);
 
         setStatus("sending");
+        setPhoneError("");
 
         try {
             const response = await fetch("/api/lead", {
@@ -48,7 +50,13 @@ export default function LeadForm() {
 
             if (!response.ok || !result.ok) {
                 setStatus("error");
-                setMessage(result.message || "Не удалось отправить заявку. Попробуйте ещё раз.");
+                setPhoneError(result.errors?.phone || "");
+                setMessage(
+                    result.message ||
+                    (result.errors && !result.errors.phone
+                        ? "Проверьте поля формы и попробуйте ещё раз."
+                        : "")
+                );
                 return;
             }
 
@@ -100,8 +108,13 @@ export default function LeadForm() {
                         Телефон
                     </label>
 
-                    <input id="lead-phone" name="phone" type="tel" autoComplete="tel" placeholder="+375 XX XXX-XX-XX"
-                           aria-describedby="phone-hint" required className={fieldClassName} />
+                    <input id="lead-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+375 XX XXX-XX-XX"
+                           aria-describedby="phone-hint" maxLength={20} required className={fieldClassName} />
+                    {phoneError && (
+                        <p id="phone-hint" className="mt-2 text-sm text-red-600">
+                            {phoneError}
+                        </p>
+                    )}
                 </div>
             </div>
 

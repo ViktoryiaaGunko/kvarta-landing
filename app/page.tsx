@@ -40,13 +40,13 @@ export default function Home() {
 
             <section className="mx-auto grid max-w-6xl gap-12 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-center">
                 <div>
-                    <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
+                    <h1 className="animate-fade-up max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
                         Маленькая мастерская
                         <br />
                         Свежий кофе
                     </h1>
 
-                    <div className="mt-8 max-w-xl space-y-4 text-base leading-relaxed md:text-lg">
+                    <div className="animate-fade-up-slow mt-8 max-w-xl space-y-4 text-base leading-relaxed md:text-lg">
                         <p>
                             Мы — Аня и Дмитрий. С 2019 года обжариваем свой кофе —
                             небольшими партиями по 5 кг.
@@ -59,7 +59,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="border-t border-current pt-6">
+                <div className="animate-fade-up-slow border-t border-current pt-6">
                     <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                         Ритм нашей мастерской
                     </p>
@@ -85,7 +85,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <a href="#coffee" className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground
+                <a href="#coffee" className="animate-fade-up-slow group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground
                 px-7 py-3 text-base font text-background transition duration-300 ease-out hover:bg-[#702A47] motion-safe:hover:scale-[1.02]
                 active:bg-[#401326] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none
                 lg:w-[calc(100%/1.4)]">
