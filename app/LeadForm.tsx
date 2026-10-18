@@ -128,16 +128,16 @@ export default function LeadForm() {
 
             <div>
                 <button type="submit" disabled={status === "sending"} className="group inline-flex min-h-12 w-full items-center justify-between
-                    gap-8 bg-foreground px-6 py-3 text-base font-medium text-background transition duration-300 ease-out
-                    hover:bg-[#702A47] motion-safe:hover:scale-[1.02] active:bg-[#401326] disabled:cursor-not-allowed
-                    disabled:opacity-60 disabled:hover:bg-foreground disabled:motion-safe:hover:scale-100
-                    focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground
-                    motion-reduce:transition-none sm:w-auto">
+                gap-8 bg-foreground px-6 py-3 text-base font-medium text-background transition duration-300 ease-out
+                hover:bg-[#702A47] motion-safe:hover:scale-[1.02] active:bg-[#401326] disabled:cursor-not-allowed
+                disabled:opacity-60 disabled:hover:bg-foreground focus-visible:outline-2 focus-visible:outline-offset-4
+                focus-visible:outline-foreground motion-reduce:transition-none sm:w-auto">
                     {status === "sending" ? "Отправляем..." : "Оставить заявку"}
+
                     <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-x-1
-    motion-reduce:transition-none">
-        ↗
-    </span>
+                    motion-reduce:transition-none">
+                        ↗
+                    </span>
                 </button>
 
                 {message && (
