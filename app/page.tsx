@@ -255,6 +255,8 @@ export default function Home() {
                             выберите, что вас интересует.
                             Платить на сайте не нужно.
                         </p>
+
+                        <img src="/request.jpg" alt="Кофейные зёрна и упаковка для заказа" className="mt-8 aspect-[4/3] w-full max-w-sm object-cover" />
                     </div>
 
                     <LeadForm />
