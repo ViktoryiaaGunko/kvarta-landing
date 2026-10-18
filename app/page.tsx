@@ -1,4 +1,4 @@
-import LeadForm from "./LeadForm"
+import LeadForm from "./LeadForm";
 
 const products = [
     {
@@ -60,40 +60,46 @@ export default function Home() {
                 </div>
 
                 <div className="border-t border-current pt-6">
-                    <p className="text-sm uppercase tracking-[0.15em]">
+                    <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                         Ритм нашей мастерской
                     </p>
 
                     <div className="mt-6 border-t border-current pt-6 pb-4">
-                        <p className="text-4xl font-semibold tracking-tight md:text-5xl">ЧТ</p>
-                        <p className="mt-2 text-lg">Обжариваем · партиями по 5 кг</p>
+                        <p className="text-4xl font-semibold tracking-tight md:text-5xl">
+                            ЧТ
+                        </p>
+
+                        <p className="mt-2 text-lg">
+                            Обжариваем · партиями по 5 кг
+                        </p>
                     </div>
 
                     <div className="pt-4 border-t border-current">
-                        <p className="text-4xl font-semibold tracking-tight md:text-5xl">ПТ</p>
-                        <p className="mt-2 text-lg">Развозим по Минску</p>
+                        <p className="text-4xl font-semibold tracking-tight md:text-5xl">
+                            ПТ
+                        </p>
+
+                        <p className="mt-2 text-lg">
+                            Развозим по Минску
+                        </p>
                     </div>
                 </div>
 
-                <a
-                    href="#coffee"
-                    className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground px-7 py-3 text-base font-medium text-background transition duration-300 ease-out hover:bg-[#702A47] motion-safe:hover:scale-[1.02] active:bg-[#401326] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none lg:w-[calc(100%/1.4)]"
-                >
+                <a href="#coffee" className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground
+                px-7 py-3 text-base font text-background transition duration-300 ease-out hover:bg-[#702A47] motion-safe:hover:scale-[1.02]
+                active:bg-[#401326] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none
+                lg:w-[calc(100%/1.4)]">
                     Выбрать кофе
-                    <span
-                        aria-hidden="true"
-                        className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-y-1 motion-reduce:transition-none"
-                    >
+
+                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-y-1
+                    motion-reduce:transition-none">
                         ↓
                     </span>
                 </a>
             </section>
 
-            <section
-                id="coffee"
-                className="mx-auto max-w-6xl scroll-mt-8 border-t border-current py-12 md:py-16"
-            >
-                <p className="text-sm uppercase tracking-[0.15em]">
+            <section id="coffee" className="mx-auto max-w-6xl scroll-mt-8 border-t border-current py-12 md:py-16">
+                <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                     Зерно и дрипы
                 </p>
 
@@ -103,10 +109,7 @@ export default function Home() {
 
                 <div className="mt-10">
                     {products.map((product) => (
-                        <article
-                            key={product.id}
-                            className="grid grid-cols-[1fr_auto] items-start gap-4 border-t border-current py-6 md:py-8"
-                        >
+                        <article key={product.id} className="grid grid-cols-[1fr_auto] items-start gap-4 border-t border-current py-6 md:py-8">
                             <div>
                                 <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
                                     {product.name}
@@ -131,10 +134,8 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="subscription"
-                className="mx-auto max-w-6xl border-t border-current py-12 md:py-16"
-            >
-                <p className="text-sm uppercase tracking-[0.15em]">
+            <section id="subscription" className="mx-auto max-w-6xl border-t border-current py-12 md:py-16">
+                <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                     Кофе по подписке
                 </p>
 
@@ -157,11 +158,8 @@ export default function Home() {
                 </div>
             </section>
 
-            <section
-                id="delivery"
-                className="mx-auto max-w-6xl border-t border-current py-12 md:py-16"
-            >
-                <p className="text-sm uppercase tracking-[0.15em]">
+            <section id="delivery" className="mx-auto max-w-6xl border-t border-current py-12 md:py-16">
+                <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                     Доставка и самовывоз
                 </p>
 
@@ -173,7 +171,7 @@ export default function Home() {
 
                 <div className="mt-10 grid gap-8 border-t border-current pt-6 md:grid-cols-[1.15fr_1fr] md:gap-12 md:pt-8">
                     <div className="flex flex-col bg-foreground p-6 text-background md:p-8">
-                        <p className="text-sm uppercase tracking-[0.15em]">
+                        <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                             Доставка по Минску
                         </p>
 
@@ -198,7 +196,7 @@ export default function Home() {
                     </div>
 
                     <div className="flex flex-col py-6 md:py-8">
-                        <p className="text-sm uppercase tracking-[0.15em]">
+                        <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                             Самовывоз из мастерской
                         </p>
 
@@ -237,7 +235,7 @@ export default function Home() {
             </section>
 
             <section id="request" className="mx-auto max-w-6xl scroll-mt-8 border-t border-current py-12 md:py-16">
-                <p className="text-sm uppercase tracking-[0.15em]">
+                <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                     Заказать кофе
                 </p>
 
