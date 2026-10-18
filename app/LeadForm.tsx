@@ -40,4 +40,21 @@ export default function LeadForm() {
 
             <div>
                 <label htmlFor="lead-comment" className="text-sm">
-                    Комментарий —
+                    Комментарий — необязательно
+                </label>
+
+                <textarea id="lead-comment" name="comment" rows={4} maxLength={2000} placeholder="Например, какой кофе хотите попробовать" className={`${fieldClassName} resize-y`} />
+            </div>
+
+            <div>
+                <button type="submit" disabled className="inline-flex min-h-12 w-full items-center justify-center bg-foreground px-7 py-3 text-base font-medium text-background disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
+                    Оставить заявку
+                </button>
+
+                <p className="mt-3 text-sm leading-relaxed">
+                    Отправка пока не подключена.
+                </p>
+            </div>
+        </form>
+    );
+}

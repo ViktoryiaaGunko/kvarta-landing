@@ -1,3 +1,5 @@
+import LeadForm from "./LeadForm"
+
 const products = [
     {
         id: "ethiopia",
@@ -231,6 +233,33 @@ export default function Home() {
                             </div>
                         </dl>
                     </div>
+                </div>
+            </section>
+
+            <section id="request" className="mx-auto max-w-6xl scroll-mt-8 border-t border-current py-12 md:py-16">
+                <p className="text-sm uppercase tracking-[0.15em]">
+                    Заказать кофе
+                </p>
+
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+                    Какой кофе вам привезти?
+                </h2>
+
+                <div className="mt-10 grid gap-10 border-t border-current pt-6 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:pt-8">
+                    <div>
+                        <p className="max-w-sm text-base leading-relaxed md:text-lg">
+                            Оставьте номер — мы перезвоним
+                            и поможем оформить заказ.
+                        </p>
+
+                        <p className="mt-4 max-w-sm text-sm leading-relaxed md:text-base">
+                            Подписка, разовый заказ или вопрос —
+                            выберите, что вас интересует.
+                            Платить на сайте не нужно.
+                        </p>
+                    </div>
+
+                    <LeadForm />
                 </div>
             </section>
         </main>
