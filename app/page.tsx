@@ -164,41 +164,71 @@ export default function Home() {
                 </p>
 
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                    Привезём или увидимся в мастерской
+                    В пятницу — к вам
+                    <br />
+                    Или заходите к нам
                 </h2>
 
-                <div className="mt-10 grid gap-10 border-t border-current pt-6 md:grid-cols-2 md:gap-16 md:pt-8">
-                    <div>
-                        <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
-                            По Минску — в пятницу
-                        </h3>
-
-                        <p className="mt-4 max-w-md text-base leading-relaxed md:text-lg">
-                            В четверг обжариваем, в пятницу развозим.
-                            От 50 BYN доставка бесплатная.
+                <div className="mt-10 grid gap-8 border-t border-current pt-6 md:grid-cols-[1.15fr_1fr] md:gap-12 md:pt-8">
+                    <div className="flex flex-col bg-foreground p-6 text-background md:p-8">
+                        <p className="text-sm uppercase tracking-[0.15em]">
+                            Доставка по Минску
                         </p>
 
-                        <p className="mt-3 max-w-md text-sm leading-relaxed md:text-base">
-                            Оставьте заявку — свяжемся и договоримся
-                            о доставке.
+                        <p className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
+                            ПТ
                         </p>
-                    </div>
-
-                    <div>
-                        <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
-                            Забрать у нас
-                        </h3>
 
                         <p className="mt-4 text-base leading-relaxed md:text-lg">
-                            Минск, ул. Короля, 9
+                            Вчера обжарили — сегодня привезли.
                         </p>
 
-                        <dl className="mt-4 grid max-w-xs grid-cols-[1fr_auto] gap-x-8 gap-y-2 text-sm md:text-base">
-                            <dt>Понедельник — пятница</dt>
-                            <dd>8:00–20:00</dd>
+                        <div className="mt-8 border-t border-current pt-4">
+                            <p className="text-base leading-relaxed md:text-lg">
+                                От 50 BYN — доставка бесплатно.
+                            </p>
 
-                            <dt>Суббота — воскресенье</dt>
-                            <dd>10:00–18:00</dd>
+                            <p className="mt-2 text-sm leading-relaxed md:text-base">
+                                Время согласуем, когда перезвоним
+                                по вашей заявке.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col py-6 md:py-8">
+                        <p className="text-sm uppercase tracking-[0.15em]">
+                            Самовывоз из мастерской
+                        </p>
+
+                        <h3 className="mt-6 text-xl font-semibold tracking-tight md:text-2xl">
+                            Короля 9, Минск
+                        </h3>
+
+                        <p className="mt-5 max-w-sm text-base leading-relaxed md:text-lg">
+                            Если удобнее забрать кофе самим —
+                            заходите в часы работы.
+                        </p>
+
+                        <dl className="mt-8">
+                            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-current py-4">
+                                <dt className="text-sm md:text-base">
+                                    Понедельник — пятница
+                                </dt>
+
+                                <dd className="whitespace-nowrap text-lg font-semibold tabular-nums tracking-tight md:text-xl">
+                                    8:00–20:00
+                                </dd>
+                            </div>
+
+                            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-current py-4">
+                                <dt className="text-sm md:text-base">
+                                    Суббота — воскресенье
+                                </dt>
+
+                                <dd className="whitespace-nowrap text-lg font-semibold tabular-nums tracking-tight md:text-xl">
+                                    10:00–18:00
+                                </dd>
+                            </div>
                         </dl>
                     </div>
                 </div>
