@@ -1,6 +1,15 @@
+"use client";
+
+import { useState } from "react";
+
 export default function LeadForm() {
+    const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+    const [message, setMessage] = useState("");
+
     const fieldClassName =
-        "mt-2 min-h-12 w-full rounded-none border-0 border-b border-current bg-transparent px-0 py-3 text-base placeholder:text-foreground/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground";
+        "mt-2 min-h-12 w-full rounded-none border-0 border-b border-current bg-transparent px-0 py-3 " +
+        "text-base placeholder:text-foreground/50 focus-visible:outline-2 focus-visible:outline-offset-4 " +
+        "focus-visible:outline-foreground";
 
     const interests = [
         { value: "subscription", label: "Подписка" },
@@ -8,8 +17,52 @@ export default function LeadForm() {
         { value: "question", label: "Есть вопрос" },
     ];
 
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const data = new FormData(form);
+        const utm = new URLSearchParams(window.location.search);
+
+        setStatus("sending");
+
+        try {
+            const response = await fetch("/api/lead", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: data.get("name"),
+                    phone: data.get("phone"),
+                    interest: data.get("interest"),
+                    comment: data.get("comment"),
+                    page_url: window.location.href,
+                    utm_source: utm.get("utm_source"),
+                    utm_medium: utm.get("utm_medium"),
+                    utm_campaign: utm.get("utm_campaign"),
+                    utm_content: utm.get("utm_content"),
+                    utm_term: utm.get("utm_term"),
+                }),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) {
+                setStatus("error");
+                setMessage(result.message || "Не удалось отправить заявку. Попробуйте ещё раз.");
+                return;
+            }
+
+            setStatus("success");
+            setMessage(result.message);
+            form.reset();
+        } catch {
+            setStatus("error");
+            setMessage("Нет связи с сервером. Попробуйте ещё раз.");
+        }
+    }
+
     return (
-        <form className="grid gap-8">
+        <form className="grid gap-8" onSubmit={handleSubmit}>
             <fieldset>
                 <legend className="text-sm">
                     Что вас интересует
@@ -18,9 +71,13 @@ export default function LeadForm() {
                 <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {interests.map((interest) => (
                         <label key={interest.value} className="relative cursor-pointer">
-                            <input type="radio" name="interest" value={interest.value} defaultChecked={interest.value === "subscription"} required className="peer sr-only" />
+                            <input type="radio" name="interest" value={interest.value} defaultChecked={interest.value === "subscription"}
+                                   required className="peer sr-only" />
 
-                            <span className="flex min-h-12 items-center justify-center border border-current px-3 py-3 text-sm transition-colors duration-200 peer-checked:bg-foreground peer-checked:text-background peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-foreground motion-reduce:transition-none">
+                            <span className="flex min-h-12 items-center justify-center border border-current
+                            px-3 py-3 text-sm transition-colors duration-200 peer-checked:bg-foreground
+                            peer-checked:text-background peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4
+                            peer-focus-visible:outline-foreground motion-reduce:transition-none">
                                 {interest.label}
                             </span>
                         </label>
@@ -34,7 +91,8 @@ export default function LeadForm() {
                         Как вас зовут
                     </label>
 
-                    <input id="lead-name" name="name" type="text" autoComplete="name" placeholder="Ваше имя" maxLength={100} required className={fieldClassName} />
+                    <input id="lead-name" name="name" type="text" autoComplete="name" placeholder="Ваше имя"
+                           maxLength={100} required className={fieldClassName} />
                 </div>
 
                 <div>
@@ -42,8 +100,8 @@ export default function LeadForm() {
                         Телефон
                     </label>
 
-                    <input id="lead-phone" name="phone" type="tel" autoComplete="tel" placeholder="+375 XX XXX-XX-XX" aria-describedby="phone-hint" required className={fieldClassName} />
-
+                    <input id="lead-phone" name="phone" type="tel" autoComplete="tel" placeholder="+375 XX XXX-XX-XX"
+                           aria-describedby="phone-hint" required className={fieldClassName} />
                 </div>
             </div>
 
@@ -55,15 +113,19 @@ export default function LeadForm() {
                 <textarea id="lead-comment" name="comment" rows={3} maxLength={2000} placeholder="Какой кофе любите? Или что хотите спросить?" className={`${fieldClassName} resize-y`} />
             </div>
 
-            <div className="border-t border-current pt-6">
-                <button type="submit" disabled className="inline-flex min-h-12 w-full items-center justify-between gap-8 bg-foreground px-6 py-3 text-base font-medium text-background disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
-                    Оставить заявку
+            <div>
+                <button type="submit" disabled={status === "sending"} className="inline-flex min-h-12 w-full items-center justify-between
+                gap-8 bg-foreground px-6 py-3 text-base font-medium text-background disabled:cursor-not-allowed
+                disabled:opacity-60 sm:w-auto">
+                    {status === "sending" ? "Отправляем..." : "Оставить заявку"}
                     <span aria-hidden="true">↗</span>
                 </button>
 
-                <p className="mt-3 text-sm leading-relaxed">
-                    Отправка пока не подключена.
-                </p>
+                {message && (
+                    <p className="mt-3 text-sm leading-relaxed">
+                        {message}
+                    </p>
+                )}
             </div>
         </form>
     );
