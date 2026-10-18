@@ -38,8 +38,7 @@ export default function Home() {
                 Кварта · Минск
             </p>
 
-            <section className="mx-auto grid max-w-6xl gap-12 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-                <div>
+            <section className="mx-auto grid max-w-6xl gap-12 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:items-start">                <div>
                     <h1 className="animate-fade-up max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
                         Маленькая мастерская
                         <br />
@@ -57,9 +56,22 @@ export default function Home() {
                             Чтобы зерно попадало к вам на 1–3 день после обжарки.
                         </p>
                     </div>
+
+                <a href="#coffee" className="animate-fade-up-slow group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground
+                px-7 py-3 text-base font text-background transition duration-300 ease-out hover:bg-[#702A47] motion-safe:hover:scale-[1.02]
+                active:bg-[#401326] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none
+                lg:w-[calc(100%/1.4)]">
+                    Выбрать кофе
+
+                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-y-1
+                    motion-reduce:transition-none">
+                        ↓
+                    </span>
+                </a>
                 </div>
 
                 <div className="animate-fade-up-slow border-t border-current pt-6">
+                    <img src="/hero.jpg" alt="Свежеобжаренные кофейные зёрна" className="mb-6 aspect-[4/3] w-full object-cover" />
                     <p className="eyebrow text-sm uppercase tracking-[0.15em]">
                         Ритм нашей мастерской
                     </p>
@@ -84,18 +96,6 @@ export default function Home() {
                         </p>
                     </div>
                 </div>
-
-                <a href="#coffee" className="animate-fade-up-slow group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-6 bg-foreground
-                px-7 py-3 text-base font text-background transition duration-300 ease-out hover:bg-[#702A47] motion-safe:hover:scale-[1.02]
-                active:bg-[#401326] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none
-                lg:w-[calc(100%/1.4)]">
-                    Выбрать кофе
-
-                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-y-1
-                    motion-reduce:transition-none">
-                        ↓
-                    </span>
-                </a>
             </section>
 
             <section id="coffee" className="mx-auto max-w-6xl scroll-mt-8 border-t border-current py-12 md:py-16">
