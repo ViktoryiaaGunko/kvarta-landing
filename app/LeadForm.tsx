@@ -134,7 +134,7 @@ export default function LeadForm() {
                 focus-visible:outline-foreground motion-reduce:transition-none sm:w-auto">
                     {status === "sending" ? "Отправляем..." : "Оставить заявку"}
 
-                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-x-1
+                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out motion-safe:group-hover:translate-y-1
                     motion-reduce:transition-none">
                         ↗
                     </span>
