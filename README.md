@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Кварта — лендинг обжарки кофе
 
-## Getting Started
+Лендинг для небольшой кофейной обжарки «Кварта» в Минске: ассортимент, подписка, доставка и самовывоз, форма заявки. Главная цель страницы — заявка на подписку или разовый заказ, корзины и онлайн-оплаты нет, менеджер перезванивает и оформляет заказ.
 
-First, run the development server:
+**Живой сайт:** https://kvarta-landing-ruddy.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Стек
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js (App Router)
+- React, TypeScript
+- Tailwind CSS
+- Neon (Postgres) для хранения заявок
+- Vercel для хостинга
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Что умеет сайт
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Рассказывает о мастерской: кто обжаривает, как устроен ритм «обжарка в четверг — доставка в пятницу» и почему свежесть важна.
+- Показывает ассортимент с ценами: три кофе, дрип-пакеты и подписку.
+- Объясняет условия доставки по Минску и самовывоза с мастерской.
+- Принимает заявки через форму: имя, телефон, что интересует, комментарий.
 
-## Learn More
+## Форма заявки
 
-To learn more about Next.js, take a look at the following resources:
+Заявки принимает эндпоинт `POST /api/lead` и сохраняет в таблицу `leads` в Postgres (Neon).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Телефон валидируется на сервере через `libphonenumber-js`: принимаются только корректные белорусские номера. При ошибке человек видит понятную подсказку под полем.
+- Повторная заявка с того же номера в течение 10 минут не создаёт дубликат — сервер возвращает сообщение, что заявка уже получена.
+- Кнопка отправки блокируется на время запроса, поэтому двойное нажатие не создаёт вторую заявку.
+- Вместе с заявкой сохраняются UTM-метки (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`) и адрес страницы. Так менеджер видит, из какой рекламы пришёл клиент.
+- Если отправка не удалась, пользователь видит сообщение с предложением попробовать ещё раз.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Почему Postgres/Neon, а не файл или SQLite: база доступна из Vercel без настройки сервера, данные надёжно хранятся между деплоями, а по заявкам удобно делать выборки и позже подключить админку или экспорт.
 
-## Deploy on Vercel
+## Что делала сама, а что ИИ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Сама: продумывала структуру и тексты лендинга, подбирала тон под клиента, проверяла страницу в браузере, тестировала форму, деплой и ошибки сборки, принимала решения по правкам.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ИИ (Claude/Perplexity) помогал: генерировать первые варианты кода и стилей, разбирать ошибки сборки и деплоя, предлагать валидацию телефона, защиту от дублей и анимации. Итоговый код я проверяла локально и на продакшне, часть формулировок и решений меняла сама.
+
+## Где ИИ ошибся и как я это заметила
+
+1. **Ошибка prerendering на `/db-test`.** ИИ сначала предложил добавить `export const dynamic = "force-dynamic"`, но в моей конфигурации Next.js с `cacheComponents` это запрещено — сборка упала с ошибкой. Решила через `<Suspense>` вокруг запроса к базе: страница собирается, а данные подгружаются динамически.
+2. **Сайт на Vercel не собирался.** Локально всё работало, а деплой падал. В логах нашлась причина: `DATABASE_URL is not defined` — переменная окружения была только в локальном `.env.local`. Добавила её в настройках Vercel и перезапустила деплой.
+3. **Предупреждение гидратации в браузере.** React ругался на несовпадение атрибутов HTML. В diff были атрибуты `bis_skin_checked` — их добавляло браузерное расширение, а не код проекта. Проверила в режиме инкогнито — предупреждения не было.
+
+## Что не успела / сделала бы иначе
+
+- Не успела добавить уведомления о новых заявках в Telegram-бот.
+- Сделала бы более заметную анимацию появления секций при скролле, но без ущерба для производительности.
+- Добавила бы простую страницу для менеджера, чтобы смотреть заявки и UTM-метки без SQL.
+
